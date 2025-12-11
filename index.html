@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Streamly — Browser-only</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">Streamly</div>
+    <div class="search-wrap">
+      <input id="search" placeholder="Search movies, shows..." />
+    </div>
+    <nav class="header-actions">
+      <button id="add-btn" class="pill">Add</button>
+      <img class="profile" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40'><rect width='100%' height='100%' fill='%23888'/></svg>" alt="profile" />
+    </nav>
+  </header>
+
+  <main>
+    <section id="hero" class="hero">
+      <div class="hero-gradient"></div>
+      <div class="hero-content">
+        <h1 id="hero-title">Featured Title</h1>
+        <p id="hero-desc">Add your videos from the Add button. Content is stored in your browser.</p>
+        <div class="hero-actions">
+          <button id="play-hero" class="btn primary">Play</button>
+          <button id="more-info" class="btn outline">More Info</button>
+        </div>
+      </div>
+      <img id="hero-poster" class="hero-poster" src="" alt="">
+    </section>
+
+    <section id="rows" class="rows"></section>
+  </main>
+
+  <div id="player-modal" class="modal hidden" aria-hidden="true">
+    <div class="modal-backdrop"></div>
+    <div class="modal-card" role="dialog" aria-modal="true">
+      <button id="close-modal" class="close-btn" aria-label="Close">✕</button>
+      <h2 id="modal-title"></h2>
+      <video id="modal-player" controls preload="auto" style="width:100%;max-height:65vh;background:#000"></video>
+      <div id="modal-meta" class="modal-meta"></div>
+    </div>
+  </div>
+
+  <!-- Add / Edit Modal -->
+  <div id="editor-modal" class="modal hidden" aria-hidden="true">
+    <div class="modal-backdrop"></div>
+    <div class="modal-card" style="max-width:700px;">
+      <button id="close-editor" class="close-btn" aria-label="Close">✕</button>
+      <h2>Add Video</h2>
+      <form id="editor-form">
+        <label>Title<input name="title" required></label>
+        <label>Year<input name="year" type="number"></label>
+        <label>Category<input name="category" placeholder="e.g., Shorts, Vlogs"></label>
+        <label>Theme Color<input name="themeColor" type="color" value="#e50914"></label>
+        <label>Description<textarea name="description" rows="4"></textarea></label>
+        <label>Poster image (optional)<input name="poster" type="file" accept="image/*"></label>
+        <label>Video file (required)<input name="video" type="file" accept="video/*" required></label>
+        <div style="display:flex;gap:12px;margin-top:12px">
+          <button type="submit" class="btn primary">Save</button>
+          <button type="button" id="clear-editor" class="btn outline">Clear</button>
+        </div>
+        <div id="editor-status" style="margin-top:8px;color:var(--muted)"></div>
+      </form>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <small>Browser-only version — data stored locally in your browser.</small>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
